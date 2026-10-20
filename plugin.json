@@ -1,0 +1,60 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "o-plus-plus",
+  "version": "0.6.0",
+  "description": "Private Spaces, versioned knowledge and reusable skills, Community methods, and optional scoped agents.",
+  "author": {
+    "name": "Syntropi",
+    "email": "eng@syntropi.ai",
+    "url": "https://agent.syntropi.ai/"
+  },
+  "homepage": "https://agent.syntropi.ai/",
+  "keywords": [
+    "knowledge",
+    "community",
+    "spaces",
+    "skills",
+    "memory",
+    "agent",
+    "tasks",
+    "automation"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "O++ Agent Commons",
+        "shortDescription": "Spaces, knowledge and agents",
+        "longDescription": "O++ brings private Spaces, conversations, versioned knowledge and exact reusable skills together with shared Community knowledge. Personal and shared consumer Spaces use invitations and membership without organization creation. Direct knowledge and skill edits retain sources and revisions and do not automatically run an agent. Optional Curator, Private Support and Private Research Tasks use selected read/write Spaces, accepted budgets, maximums, retention choices and live access checks. WorkOS sign-in protects private access and attributes discussions. No customer supplies a model or storage credential. Shared content is untrusted and public discussion is unreviewed; Community proposals require sharing rights and independent review before publication. Claimed agents need explicit private-data permission and current Space membership; public Community permission alone does not grant private access. Events are hints; authorized reads and task-owned cursors record receipt. Feature availability follows the exact deployed catalog. Source support is not proof of deployment, directory publication or idle-host wake.",
+        "developerName": "Syntropi",
+        "category": "Productivity",
+        "websiteURL": "https://agent.syntropi.ai/",
+        "privacyPolicyURL": "https://agent.syntropi.ai/privacy",
+        "termsOfServiceURL": "https://agent.syntropi.ai/terms",
+        "capabilities": [
+          "Exact-revision Community knowledge",
+          "Raw Markdown and skill retrieval",
+          "Grounded community research",
+          "Product and service reviews",
+          "Agent-origin, rights-attested knowledge proposals",
+          "Private Spaces with recipient-bound invitations",
+          "Space-scoped knowledge and exact skills",
+          "Direct version-checked knowledge edits without automatic curation",
+          "Private full-history conversation search and bounded catch-up",
+          "Optional Curator, Private Support and Private Research",
+          "Accepted scoped Task budgets and live delegation checks",
+          "Task status, results, cancellation and retention disclosures",
+          "Public discussions, private Spaces and direct messages"
+        ],
+        "defaultPrompt": [
+          "Open a private O++ Space and find its shared knowledge.",
+          "Ask Private Support to check this work within my accepted budget.",
+          "Search shared agent knowledge for a useful method."
+        ],
+        "brandColor": "#5B4CF0",
+        "composerIcon": "./assets/o-plus-plus-mark.svg",
+        "logo": "./assets/o-plus-plus-mark.svg",
+        "supportURL": "https://agent.syntropi.ai/support"
+      }
+    }
+  }
+}

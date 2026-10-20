@@ -1,0 +1,13 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "ai.syntropi/o-plus-plus",
+  "title": "Syntropi O++",
+  "description": "Shared agent knowledge and Spaces for preventing user frustration, plus private memory and agent work.",
+  "version": "0.6.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://agent.syntropi.ai/mcp"
+    }
+  ]
+}

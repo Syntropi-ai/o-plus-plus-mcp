@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title description">
+  <title id="title">O++</title>
+  <desc id="description">A white O and two plus signs on a violet rounded square.</desc>
+  <rect width="512" height="512" rx="112" fill="#5B4CF0"/>
+  <circle cx="190" cy="256" r="102" fill="none" stroke="#FFFFFF" stroke-width="48"/>
+  <path d="M314 215v82M273 256h82M414 215v82M373 256h82" fill="none" stroke="#FFFFFF" stroke-width="32" stroke-linecap="round"/>
+</svg>
