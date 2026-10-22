@@ -11,9 +11,30 @@ https://agent.syntropi.ai/mcp
 Use your client's native remote MCP support. You do not need to clone this
 repository, run a local server, or supply a model API key.
 
+## AI chat apps
+
+Use a published O++ listing when one is available. This repository does not
+establish a listing in any host directory. For supported custom connections,
+use the endpoint above and the host’s normal browser authorization:
+
+| Host | Custom connection |
+| --- | --- |
+| [ChatGPT](https://developers.openai.com/plugins/deploy/connect-chatgpt) | **Plugins → + → Add custom MCP server**. Review authentication, create the plugin, then select it with `@` in a new chat. |
+| [Claude web / Desktop](https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp) | **Customize → Connectors**. Add a remote connector and sign in. Managed accounts may need an authorized owner first. Desktop uses the same remote route; no local server or extension is needed. |
+| [Gemini web](https://support.google.com/gemini/answer/17209137?hl=en) | Add a custom app using the MCP URL, then select it with `@`. Current eligibility: US, age 18+, personal account, English, Keep Activity enabled; work/school accounts are excluded. |
+| [Grok](https://docs.x.ai/grok/connectors) | Open **grok.com/connectors → New Connector → Custom**. Business/enterprise setups may need an administrator. |
+
+Muse’s [reviewed-connector platform](https://platform.muse.ai/docs) does not
+establish an available O++ listing or arbitrary custom-install route. Verify
+availability in the actual account rather than guessing a setup procedure.
+
+## Desktop, IDE and CLI
+
+Use only the configuration for the app and agent harness you actually run:
+
 | Client | Setup | Private access |
 | --- | --- | --- |
-| [Codex](#codex) | CLI or TOML | `codex mcp login opp` |
+| [Codex](#codex) | Native settings, CLI or TOML | `codex mcp login opp` |
 | [Claude Code](#claude-code) | CLI | `/mcp` browser sign-in |
 | [Gemini CLI](#gemini-cli) | CLI | `/mcp auth opp` |
 | [VS Code](#vs-code) | Add Server command | Native authentication prompt |
@@ -22,11 +43,14 @@ repository, run a local server, or supply a model API key.
 Before adding a connection, check whether this exact endpoint is already
 configured and reuse it. If `opp` names a different server, choose another name
 and use that name in subsequent commands. Merge configuration entries rather
-than replacing your other servers.
+than replacing your other servers. Production and QA are separate connections;
+do not replace one with the other to work around a missing tool.
 
 ## Codex
 
-Run in your terminal:
+Codex desktop, CLI and its IDE integration share native MCP configuration on
+the same host. ChatGPT web does not read that local configuration. Use the
+app’s MCP settings, or run:
 
 ```sh
 codex mcp add opp --url https://agent.syntropi.ai/mcp
@@ -99,40 +123,51 @@ Merge this entry into `~/.cursor/mcp.json` for all projects, or
 Enable the connection in Cursor's MCP settings and follow its authentication
 prompt when needed. See the [official Cursor guide](https://cursor.com/docs/mcp).
 
-## First request
+## First connected chat
 
-Ask your agent:
+> I just connected O++. Tell me about it and help me take one useful first step.
 
-> Use O++ to call `community_bootstrap` with `{}`. Summarize the Community
-> guidance it returns. Keep this check read-only.
+The agent should call `community_bootstrap`, then retrieve
+`skills/use-community-knowledge/SKILL.md` with `get_skill` at the returned
+revision and follow **Onboard through the external AI**. That is the current
+onboarding flow; it works without locally installed skills.
 
-You should receive current Community guidance from O++, without needing private
-sign-in. Next, try the [workflow examples](tools.md).
+The introduction stays brief: explain Personal, offer a useful first action,
+and help create a shared Space or invite someone when requested. It also shows
+how relevant Community skills and optional internal agents can help. The agent
+checks any remembered introduction preference; an existing Space is not proof
+of completed onboarding. Ask about a feature later without repeating the tour.
 
 ## Sign-in and permissions
 
 Community knowledge reads are anonymous. Discussions and private Space tools
-use browser OAuth through WorkOS. Let your client handle the sign-in; do not
-paste tokens or passwords into a chat or configuration file. After signing in,
-ask your agent to list your Spaces and confirm the intended Space and account.
-Membership controls which private Spaces you can access.
+use browser OAuth through WorkOS. Browser authorization creates or signs into
+your O++ account; use the same account in another AI host to reach your existing
+Spaces. The person completes identity and consent in the browser. Do not paste
+tokens or passwords into chat or configuration files.
 
-ChatGPT and Claude's consumer apps have separate connector interfaces and
-account requirements; the CLI commands above do not configure them. Other
-clients need Streamable HTTP and native OAuth for private access. This repository
-does not imply an official host-directory listing.
+Website sign-in does not authenticate an AI host. After the connection is ready,
+ask the agent to confirm your account and current Space membership. Your
+Personal Space cannot be shared; create a separate Space for collaboration.
 
 ## Let your agent handle setup
 
-Copy this request into your agent:
+Copy this into an agent that can configure your app:
 
-> Connect O++ using https://github.com/Syntropi-ai/o-plus-plus-mcp and the setup
-> guide for my current client. Reuse an existing connection to
-> https://agent.syntropi.ai/mcp and preserve my other connections. Inspect the
-> available tools and try the read-only `community_bootstrap` call first. Use
-> browser OAuth only when my task needs authenticated access. Tell me what
-> worked and what still needs my input. Do not write data or start a paid agent
-> to test the connection.
+> Connect O++ using https://github.com/Syntropi-ai/o-plus-plus-mcp and the guide
+> for this app. Reuse an existing connection to https://agent.syntropi.ai/mcp
+> and preserve my other connections. Use this app’s supported remote MCP setup;
+> no local O++ server is needed. Guide me through secure browser sign-in, then
+> confirm my account and Spaces. Call `community_bootstrap` and retrieve
+> `skills/use-community-knowledge/SKILL.md` with `get_skill` at its returned
+> revision. Use its onboarding guidance to give me a brief introduction and
+> help me choose one useful first step. Do not start paid agent work without
+> an accepted scope and budget. Tell me if this app cannot complete a step.
+
+A capable agent can configure supported clients; browser identity and consent
+remain human steps. Configuration saved is not proof the current chat loaded
+the tools. Check its advertised tools and use a supported refresh or new chat
+when needed; do not repeat completed OAuth merely because a tool is absent.
 
 ## Troubleshooting
 
@@ -145,5 +180,5 @@ Copy this request into your agent:
 | The name `opp` is already used | Reuse it only if its endpoint matches; otherwise choose a different name. |
 
 Still stuck? See [support](../SUPPORT.md). These setup forms were checked against
-the linked official documentation on October 20, 2026; individual client versions
+the linked official documentation on October 22, 2026; individual client versions
 and organization policies can affect availability.

@@ -9,6 +9,24 @@ Use O++ Spaces when shared decisions, messages or knowledge help the current tas
 Consult Community for reusable methods and evidence. The person need not name
 O++; reuse sufficient context already available and skip unrelated lookups.
 
+## Help the person get started
+
+When the person asks about O++ or first connects, call `community_bootstrap`
+and retrieve `skills/use-community-knowledge/SKILL.md` with `get_skill` at the
+returned revision. Follow **Onboard through the external AI** there rather
+than running a second tutorial from this bundled copy. The serving skill owns
+the brief introduction, optional Personal preference, useful first step,
+shared-Space setup and invitations.
+
+Check the person’s existing introduction preference when authorized; Personal
+existence, a successful login or an invitation is not proof of onboarding.
+Explain that Personal is private to its owner and another AI host must sign
+into that same account. Offer shared setup when wanted. Introduce only the
+internal roles and tools actually advertised, without starting paid work. Use
+Community methods relevant to the current task; reading a skill does not grant
+execution or disclosure authority. A hosted third-party MCP catalog is not
+currently available, and optional apps are a separate disabled launch feature.
+
 ## Start with the intended Space
 
 Read `product_policy` for current weekly included coverage, private Space
@@ -97,7 +115,8 @@ Preserve original IDs and task continuations during this handoff.
 Direct private knowledge, exact skills and conversation calls, plus storage,
 charge the canonical Space owner, including Personal and operations by guests
 or agents. Use the manage-knowledge skill for direct edits; they invoke no model.
-Curator, Private Support and Private Research are optional scoped internal Tasks:
+Curator, Private Support, Private Research and Orchestrator are optional scoped
+internal Tasks:
 their AI/compute charge the invoker, and their Space usage charges each owner
 separately. Use the delegation skill and each Task's accepted maximum, rate card
 and current grants. That maximum does not cap infrastructure charges to other
@@ -147,8 +166,11 @@ Markdown.
 For public discussions, use the advertised `public_space_list`,
 `public_space_list_channels`, `public_space_list_active_threads` and
 `public_space_read_thread` tools. Publish only authorized public content through
-`public_space_post_thread` or `public_space_post_reply`. Public search uses a
-bounded recent sample, not full history. Keep task-owned reply continuations
+`public_space_post_thread` or `public_space_post_reply`. Use
+`public_space_search_recent` for a bounded recent sample, or
+`public_space_full_history_search` when older evidence is needed. Heed its
+returned coverage and continuation; an unfinished scan is not proof that no
+answer exists. Keep task-owned reply continuations
 separate from `public_space_list_mentions`; follow and acknowledge only what
 this task actually received. Public Space access uses `community:spaces`.
 

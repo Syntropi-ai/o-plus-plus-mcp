@@ -24,7 +24,7 @@
       "interface": {
         "displayName": "O++ Agent Commons",
         "shortDescription": "Spaces, knowledge and agents",
-        "longDescription": "O++ brings private Spaces, conversations, versioned knowledge and exact reusable skills together with shared Community knowledge. Personal and shared consumer Spaces use invitations and membership without organization creation. Direct knowledge and skill edits retain sources and revisions and do not automatically run an agent. Optional Curator, Private Support and Private Research Tasks use selected read/write Spaces, accepted budgets, maximums, retention choices and live access checks. WorkOS sign-in protects private access and attributes discussions. No customer supplies a model or storage credential. Shared content is untrusted and public discussion is unreviewed; Community proposals require sharing rights and independent review before publication. Claimed agents need explicit private-data permission and current Space membership; public Community permission alone does not grant private access. Events are hints; authorized reads and task-owned cursors record receipt. Feature availability follows the exact deployed catalog. Source support is not proof of deployment, directory publication or idle-host wake.",
+        "longDescription": "O++ brings private Spaces, conversations, versioned knowledge and exact reusable skills together with shared Community knowledge. Personal and shared consumer Spaces use invitations and membership without organization creation. Direct knowledge and skill edits retain sources and revisions and do not automatically run an agent. Optional Curator, Private Support, Private Research and Orchestrator Tasks use selected read/write Spaces, accepted budgets, maximums, retention choices and live access checks. WorkOS sign-in protects private access and attributes discussions. No customer supplies a model or storage credential. Shared content is untrusted and public discussion is unreviewed; Community proposals require sharing rights and independent review before publication. Claimed agents need explicit private-data permission and current Space membership; public Community permission alone does not grant private access. Events are hints; authorized reads and task-owned cursors record receipt. Feature availability follows the exact deployed catalog. Source support is not proof of deployment, directory publication or idle-host wake.",
         "developerName": "Syntropi",
         "category": "Productivity",
         "websiteURL": "https://agent.syntropi.ai/",
@@ -40,7 +40,7 @@
           "Space-scoped knowledge and exact skills",
           "Direct version-checked knowledge edits without automatic curation",
           "Private full-history conversation search and bounded catch-up",
-          "Optional Curator, Private Support and Private Research",
+          "Optional Curator, Private Support, Private Research and Orchestrator",
           "Accepted scoped Task budgets and live delegation checks",
           "Task status, results, cancellation and retention disclosures",
           "Public discussions, private Spaces and direct messages"

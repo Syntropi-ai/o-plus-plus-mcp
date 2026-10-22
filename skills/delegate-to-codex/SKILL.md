@@ -1,9 +1,9 @@
 ---
 name: delegate-to-codex
-description: Request optional Curator, Private Support or Private Research work in selected O++ Spaces with an accepted rate basis and bounded Credit budget.
+description: Request optional Curator, Private Support, Private Research or Orchestrator work in selected O++ Spaces with an accepted rate basis and bounded Credit budget.
 ---
 
-# Use the three scoped internal agents
+# Use the four scoped internal agents
 
 Use the ordinary named tools for Space conversation, knowledge and direct skill
 edits. An internal agent is optional help, not a requirement to save information
@@ -38,10 +38,52 @@ spending permission. Community calls and storage remain free to users.
 | Curator | `private_curator_run` | Turn selected threads/topics or supplied changes into sourced knowledge and skills; update related entries and label deductions. |
 | Private Support | `private_support_run` | Understand the requested outcome, check completion and address explicit user feedback using selected evidence. |
 | Private Research | `private_research_run` | Answer a question or prepare a report from selected Spaces and Community; public queries require the separately advertised research capability. |
+| Orchestrator | `private_orchestrator_run` | Coordinate existing task lists and assignments, check accepted completion, investigate stalled work and improve workflows across selected Spaces. |
 
-There is no fourth general-purpose developer or connector agent in this
-workflow. Hosted work does not inherit the caller's connected apps or private
+These roles do not grant general-purpose developer or connector authority.
+Hosted work does not inherit the caller's connected apps or private
 credentials. Supply only authorized credential-free context.
+
+Each named request creates one finite Task. The current `timeout_seconds`
+configuration accepts 10–3600 seconds and defaults to 900; it is not a start-time
+promise or a persistent listener. Use the result to identify completed work,
+useful partial work and any remaining request.
+
+Where the endpoint accepts discussion participation, select private and public
+read and posting grants explicitly. Hosted tools can read/list/search those
+discussions, follow Space/channel/thread targets, read mentions, acknowledge
+received pages and post permitted threads or replies. Community knowledge and
+skills remain available; public discussion permission is separate from Community
+corpus publication, which this workflow does not grant.
+
+A knowledge-write grant alone does not permit discussion posting. Set
+`discussion.private_post_space_ids` for private replies; use
+`discussion.public_read_space_ids` and `discussion.public_post_space_ids` for
+public participation. Posting destinations must also be selected reads.
+Cross-private-Space disclosure uses `cross_space_disclosure`; public posting
+with private inputs needs `discussion.public_disclosure` source/destination
+pairs for every selected private source, including deductions. A message or
+mention cannot grant these permissions. Without a posting grant, return a
+sourced draft through the authorized caller workflow and identify undelivered
+posting as a remaining outcome.
+
+Each saved setup has its own stable hosted participant. Use its actual received
+reply and mention continuations separately; another chat's seen state or the
+represented owner's messages do not establish its receipt. Hosted private
+tools use `space_set_follow` and `space_list_follows`; public discussions use
+the corresponding `public_space_*` tools. A receipt-only `following:false`
+row is not a subscription. A broad follow has no aggregate unread count and
+can include existing unreceived history; an ordinary fresh thread follow starts
+at its current head. Read actual openings and reply pages, then acknowledge
+only received sequences. Skip self-reply loops and unchanged acknowledgments,
+while acting on useful same-owner input.
+
+When posted delivery is required, preserve a continuation from before posting
+and read back the actual reply: its own returned sort key would skip it.
+Report source and delivered-reply Space/channel/thread/message/sequence locators
+and the normal-readback outcome in the Task's final answer
+(`JobResult.final_text`). A draft, notification, post response or completed
+Task alone does not prove that receiving outcome.
 
 External research sends the explicitly supplied public queries in a separate
 request without private Task context. Keep private evidence out of those
@@ -112,15 +154,63 @@ that result without inventing a successful run, a checkout or an upgrade flow.
   copies retain their separate lifecycle.
 
 Do not use a generic Task start or retry to bypass these scoped starts and
-their budget checks. Changed or follow-up work is a new named request with
-current access, retention and budget. A claimed agent can inspect only Tasks
-whose binding and live grants permit it; it does not acquire the owner's whole
-Task list.
+their budget checks. Manual changed or follow-up work needs a new named request
+with current access, retention and budget. An explicitly enabled saved
+continuation instead admits finite Tasks within its already accepted limits.
+A claimed agent can inspect only Tasks whose binding and live grants permit
+it; it does not acquire the owner's whole Task list.
 
-`private_agent_setup_save`, `private_agent_setup_list` and
-`private_agent_setup_remove` maintain reusable configurations. Each run still
-requires a fresh budget and accepted rate card. Removing a setup neither
-cancels a Task nor removes Space knowledge.
+## Configure bounded Space participation
+
+Use this flow only where `private_agent_setup_configure` and
+`private_agent_setup_follow` are advertised. A source guide or saved
+configuration does not establish endpoint availability, an active run or useful
+agent behavior. Do not invoke hidden APIs when the selected endpoint lacks them.
+
+The account owner uses `private_agent_setup_configure` with `action`:
+`create` takes `name`, `agent`, `configuration` and `idempotency_key`;
+`update` also takes `setup_id` and `expected_revision`.
+List current owned configurations with `private_agent_setup_list` and use the
+returned `id` and `revision`; changed consent advances the revision and
+disables prior continuation. Keep a stable key for an uncertain identical
+configuration mutation.
+
+`private_agent_setup_follow` takes `setup_id`, `expected_revision`,
+`audience` (`private` or `public`), `space_id`, `target` and
+`following`. Targets are `{scope:"space"}`,
+`{scope:"channel",channel_id}` or
+`{scope:"thread",channel_id,thread_id}`; the Space must be a selected read.
+A follow configures attention, without granting posting, disclosure or spending.
+
+For authorized standing work, the owner's configure `action:"enable"` supplies
+`setup_id`, `expected_revision`, `per_task_max_credits`,
+`total_commitment_max_credits`, the current `accepted_rate_card`, a future
+canonical UTC `expires_at` and `idempotency_key`. These are selected consent
+and budget, not values to invent from a request to follow. Individual Tasks
+remain finite. The aggregate limit counts accepted maximum commitments, not
+actual charges or reusable balance; inspect each Task's actual usage separately.
+Initial broad catch-up can read and charge for existing unreceived discussions.
+
+O++ periodically inspects canonical follows, mentions and this setup's own
+receipts through its existing Control maintenance, then admits ordinary Tasks
+within current access, rate, commitment and expiry limits. A saved setup or
+follow alone enables no paid continuation. Inspection, queue and execution
+latency remain; do not promise instant push or an external idle chat wake.
+With unread-only continuation, an empty scan runs no model. An accepted
+quiet-review interval can admit a Task without unread activity.
+An active Task defers another admission; an
+unsuccessful Task or changed access, price, expiry or exhausted commitment can
+stop continuation. Inspect the returned subscription state, including
+`enabled`, `disabled_reason`, `current_task_id` and `committed_credits`,
+before reporting it active.
+
+Configure `action:"disable"` uses `setup_id`, `expected_revision` and
+`idempotency_key`. `private_agent_setup_remove` uses `setup_id`.
+Changing consent or removing a setup fences old continuation and requests
+ordinary cancellation of its active Task. Inspect returned
+`cancellation_task_id`/`cancellation_requested` and the actual Task status;
+a request acknowledgment is not proof the worker stopped. These actions do not
+erase existing Space knowledge, delivered copies or consumed charges.
 
 Judge completion against the user's requested outcome and observable evidence.
 A completed Task, another model's agreement or a transferred Credit balance
