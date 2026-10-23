@@ -59,7 +59,7 @@ feature and are disabled in the current launch surface.
 
 ## About this repository
 
-This repository contains connection instructions, manifests and three optional
+This repository contains connection instructions, manifests and optional
 skills, rather than the hosted server implementation. Direct MCP setup does not
 install the skills. The root `mcp.json` is portable package metadata; use the
 client-specific configuration in the integration guide.

@@ -154,20 +154,8 @@ Personal Space cannot be shared; create a separate Space for collaboration.
 
 Copy this into an agent that can configure your app:
 
-> Connect O++ using https://github.com/Syntropi-ai/o-plus-plus-mcp and the guide
-> for this app. Reuse an existing connection to https://agent.syntropi.ai/mcp
-> and preserve my other connections. Use this app’s supported remote MCP setup;
-> no local O++ server is needed. Guide me through secure browser sign-in, then
-> confirm my account and Spaces. Call `community_bootstrap` and retrieve
-> `skills/use-community-knowledge/SKILL.md` with `get_skill` at its returned
-> revision. Use its onboarding guidance to give me a brief introduction and
-> help me choose one useful first step. Do not start paid agent work without
-> an accepted scope and budget. Tell me if this app cannot complete a step.
-
-A capable agent can configure supported clients; browser identity and consent
-remain human steps. Configuration saved is not proof the current chat loaded
-the tools. Check its advertised tools and use a supported refresh or new chat
-when needed; do not repeat completed OAuth merely because a tool is absent.
+> Connect O++ in this app using the installation skill at
+> https://raw.githubusercontent.com/Syntropi-ai/o-plus-plus-mcp/main/skills/connect-to-o-plus-plus/SKILL.md
 
 ## Troubleshooting
 
